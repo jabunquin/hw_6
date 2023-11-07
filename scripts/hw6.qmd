@@ -2,7 +2,9 @@
 title: "HW6"
 format: html
 editor: visual
-bibliography: hw6.bib
+bibliography: hw_6.bib
+fig-width: 6.5
+fig-height: 8
 ---
 
 ```{r}
@@ -26,3 +28,9 @@ star %>%
   kable(col.names = c("sex","frl","math_mean", "math_sd",                       "rdg_mean", "rdg_sd"), 
         digits = 3,booktabs = TRUE) 
 ```
+
+
+```{r}
+
+```
+
