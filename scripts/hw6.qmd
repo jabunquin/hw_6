@@ -30,7 +30,7 @@ star %>%
 ```
 
 
-```{r}
+## References
 
-```
+@brown1999
 
