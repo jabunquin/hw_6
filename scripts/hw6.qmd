@@ -2,6 +2,7 @@
 title: "HW6"
 format: html
 editor: visual
+bibliography: hw6.bib
 ---
 
 ```{r}
