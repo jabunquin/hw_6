@@ -24,3 +24,25 @@ You can add options to executable code like this
 ```
 
 The `echo: false` option disables the printing of code (only output is displayed).
+
+```{r}
+
+library(readr)
+library(here) 
+library(rio) 
+library(tidyverse)
+library(knitr) 
+library(ggplot2)
+
+
+#| warning: false  
+
+star <- import(here("Data","star.csv"))  
+
+star %>%   
+  group_by(sex,frl) %>%  
+  summarise(mean(tmathss), sd(tmathss),   
+            mean(treadss), sd(treadss)) %>%  
+  kable(col.names = c("sex","frl","math_mean", "math_sd",                       "rdg_mean", "rdg_sd"), 
+        digits = 3,booktabs = TRUE) 
+```
