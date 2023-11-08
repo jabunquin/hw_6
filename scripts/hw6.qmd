@@ -1,14 +1,18 @@
 ---
 title: "HW6"
-format: html
+format: pdf
+highlight-style: tango
 editor: visual
-bibliography: hw_6.bib
+execute:
+  echo: false
 fig-width: 6.5
-fig-height: 8
+fig-height: 8.0
+bibliography: hw_6.bib
 ---
 
+## Imports
 ```{r}
-
+#| warning: false
 library(readr)
 library(here) 
 library(rio) 
@@ -16,21 +20,44 @@ library(tidyverse)
 library(knitr) 
 library(ggplot2)
 
+```
+## Commit 1
 
-#| warning: false  
+```{r}
+star <- import(here("data","star.csv"))  
+```
 
-star <- import(here("Data","star.csv"))  
+## Commit 2
 
+This is an example of an in-text citation where the we cite Brown [-@brown1999] but only include the author's year of publication in the parenthesis. Here is another example where using the work of @amelink2009. Meanwhile, this is another example where the author and year is included both in the parenthetical citations [@hyde1990]. We can also refer to this statement to illustrate BibTex citation in Quarto [@felson1991].
+
+## Commit 3
+```{r}
+#| message: false
 star %>%   
   group_by(sex,frl) %>%  
   summarise(mean(tmathss), sd(tmathss),   
             mean(treadss), sd(treadss)) %>%  
-  kable(col.names = c("sex","frl","math_mean", "math_sd",                       "rdg_mean", "rdg_sd"), 
+  kable(col.names = c("sex","frl","math_mean", "math_sd", "rdg_mean", "rdg_sd"), 
         digits = 3,booktabs = TRUE) 
 ```
 
-
-## References
-
-@brown1999
-
+## Commit 4
+```{r}
+#| message: false
+star %>%
+  ggplot(aes(x = totexp, y = tmathss)) +
+  geom_point(color = "gray60") +
+  geom_smooth(aes(color = frl), method = lm) +
+  scale_color_discrete(labels = c("Free/Reduced Price Meals", "Paid Meals"))+
+  labs(x = 'Teacher Experience (years)',
+       y = 'Total Math Scale Score',
+       title = 'Relation between teacher experience and math scores',
+       subtitle = 'Separate regression lines displayed by free/reduced price lunch status',
+       color = "Lunch Status")+
+  theme_minimal() +
+  theme(legend.position = "bottom",
+        legend.justification = "center")
+  
+```
+# References
